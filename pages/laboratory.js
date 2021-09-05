@@ -15,7 +15,7 @@ return (
         </SWRConfig>
       );
     }
-    export default Laboratory;
+  
     
     
     const  Article = ()=>{
@@ -61,3 +61,4 @@ return (
         
     }
 }
+export default Laboratory;
