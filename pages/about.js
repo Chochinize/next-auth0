@@ -4,13 +4,13 @@ import Head from 'next/head'
 import Main from '../Components/Main'
 import {useState} from 'react'
 import AppContext from '../Context/state'
-const About = ({potes}) => {
+const About = () => {
 
 const {Add,state} = useContext(AppContext)
 const [box,setBox]=useState(false);
 const [show,setShow]=useState(false);
 
-console.log(potes)
+
 
 
     
@@ -23,11 +23,7 @@ console.log(potes)
         <link rel="icon" href="/CHOCHINIZE.svg"  />
       </Head>
 
-        {potes.data.map(d=>{
-            return (<div>
-                <h1>{d.name}</h1>
-            </div>)
-        })}
+       
     
       <div className=' border-b-2  list-none'>
             <li className='my-10 text-xs'>SHADOW TEXT   </li>
@@ -37,17 +33,17 @@ console.log(potes)
     </div>
     );
 }
-export async function getStaticProps(){
+// export async function getStaticProps(){
 
     
-    const res = await fetch('http://localhost:3000/api/people/');
-    const data = await res.json();
+//     const res = await fetch('http://localhost:3000/api/people/');
+//     const data = await res.json();
     
 
     
-    return {
-        props:{potes:data}
-    }
-}
+//     return {
+//         props:{potes:data}
+//     }
+// }
 
 export default About;
