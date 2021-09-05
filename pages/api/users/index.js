@@ -3,7 +3,7 @@ import Users from "../../../models/Users";
 dbConnect();
 
 
-export default async (req,res)=>{
+const Page = async(req,res)=>{
     const {method} = req;
 
     switch(method){
@@ -30,3 +30,4 @@ export default async (req,res)=>{
 
     }
 }
+export default  Page
