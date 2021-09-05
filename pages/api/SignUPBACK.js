@@ -4,7 +4,7 @@ import nc from 'next-connect'
 import {getUsers} from '../../controllers/usersController'
 
 const onError = (err,req,res)=>{
-    res.status(205).json({err:`POST method not allowed ${err.message}`})
+    res.status(205).json({err:`POST method not allowed ${err.msg}`})
 }
 const onNoMatch = (req,res) =>{
     res.status(404).json({message:'Not Allowed'})
@@ -35,6 +35,8 @@ const onNoMatch = (req,res) =>{
 
     })
     .post((req,res)=>{
-        throw new Error('NOT ALLOWED')
+        throw new Error(
+            res.status(400).json({msg:'NO POST  REQUEST'})
+        )
     })
 export  default handler

@@ -5,7 +5,7 @@ import {signIn,signOut,useSession} from 'next-auth/client'
 const Development = () => {
 
     const [session,loading] = useSession()
-  console.log(session.user)
+  
     return (
         <div>{!session && (
             <>
