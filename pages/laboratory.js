@@ -41,7 +41,7 @@ return (
  
  
  
- export async function getServerSideProps(ctx){
+ export async function getStaticProps(){
 
 
     

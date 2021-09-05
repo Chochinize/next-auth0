@@ -14,15 +14,15 @@ function MyApp({ Component, pageProps }) {
 
 
         return (
+        <Provider session={pageProps}>
         <Layout>
         <AppContextProvider>
-        <Provider session={pageProps}>
         <Component {...pageProps} />
-        </Provider>
         
         </AppContextProvider>
         </Layout>
         
+        </Provider>
         )
         }
 
