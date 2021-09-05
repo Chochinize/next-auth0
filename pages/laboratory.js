@@ -4,7 +4,7 @@ import {useState,useEffect} from 'react'
 
 
 const fetcher = (url)=> fetch(url).then((res)=> res.json())
-const API = 'http://localhost:3000/api/users/'
+const API = 'http://localhost:3000/api/users'
 
 
 const Laboratory = ({fallback}) => {
@@ -41,7 +41,7 @@ return (
  
  
  
- export async function getServerSideProps(){
+ export async function getServerSideProps(ctx){
 
 
     

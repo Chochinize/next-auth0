@@ -1,11 +1,10 @@
 import {useEffect,useState} from 'react'
-// import { get } from 'mongoose';
-import useUser from '../lib/hooks'
+
 import Link from 'next/link'
 const Backend = ({potes}) => {
 
 const [log,setLog] = useState(false)
-const  [user,{mutate}] =  useUser()
+
 
 
 
@@ -83,7 +82,7 @@ const LogOn = ()=>{
     export async function getServerSideProps(){
 
         
-        const res = await fetch('http://localhost:3000/api/users/');
+        const res = await fetch('http://localhost:3000/api/users');
     const data = await res.json();
     
     if(!data){
