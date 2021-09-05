@@ -80,8 +80,9 @@ const LogOn = ()=>{
      );
     }
 
-    export async function getServerSideProps(){
+    export async function getServerSideProps(ctx){
 
+        console.log(ctx)
         const res = await fetch('http://localhost:3000/api/users/');
     const data = await res.json();
     
