@@ -36,7 +36,7 @@ const  handler = async(req, res)=>{
             res.status(400).json({message:"Name already exis"})
             break;
           }
-          const createUser = await Users.create(req.body)
+          const createUser = await Users.create(data)
           res.status(200).json({success:true,data:createUser})
 
         } catch (error) {

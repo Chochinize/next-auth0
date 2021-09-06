@@ -1,8 +1,7 @@
 import Loader from '../Components/Loader';
 import {useState,useEffect} from 'react'
 import {useRouter} from 'next/router'
-import { route } from 'next/dist/server/router';
-import { useUser } from '../lib/hooks';
+
 const LogInFront = () => {
     
     // const  [user,{mutate}]  = useUser()
