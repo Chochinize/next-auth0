@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 
+
 const Pizzas = new mongoose.Schema({
   name:{
     type:String,
@@ -17,7 +18,15 @@ price:{
 },
 image:{
     type:String
+},
+quntity:{
+    type:[Number]
 }
   })
 
-  export default mongoose.models.Pizzas || mongoose.model('Pizza',Pizzas);
+  export default mongoose.models.Pizzas || mongoose.model('Pizzas',Pizzas);
+
+
+
+
+// export const Pizza  = mongoose.model('Pizzas',Pizzas)

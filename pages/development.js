@@ -7,16 +7,17 @@ const Development = () => {
     const [session,loading] = useSession();
   
     return (
-        <div>{!session && (
+        <div className='bg-blue-200'>{!session && (
             <>
                 Not  signed in 
-                <button onClick={signIn}>Sign in</button>
+                {loading}
+                <button onClick={signIn}>Sign im</button>
             </>
         )}
         {session &&  (
             <>
-            Signed in as martin asd  
-            <div>You  can acces now  this  content</div>
+            Signed in as {session?.user?.name}
+            <div>You  can acces now  this  cdsadasdsadontent</div>
             <button onClick={signOut}>sign out</button>
             </>
         )}

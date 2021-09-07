@@ -14,7 +14,15 @@ const API = 'http://localhost:3000/api/Pizza-Store'
 
 
 
+const SideProjects = ({fallback}) => {
+   
 
+    return (
+        <SWRConfig value={{fallback}}>
+           <Pizzas/>
+        </SWRConfig>
+    )
+}
 
 const Pizzas  = ()=>{
     const {data}=useSWR(API,fetcher)
@@ -24,7 +32,10 @@ const Pizzas  = ()=>{
   
     const router = useRouter()
     const addToBasket = (ids,prod)=>{
-        
+        setBasket([
+            ...basket,
+            prod
+        ])
     }  
     const sendData = ()=>{
 
@@ -63,11 +74,13 @@ const Pizzas  = ()=>{
                 <div className='absolute top-0   h-1/2 right-6 w-1/4'>
                     <aside className='w-150   border-2 '>
                         <header className='grid grid-rows-[1fr,1fr,3fr]'>
-                            <h1 className='bg-red-200 text-center p-2 m-4'>
+                            <h1 className='bg-red-200 text-center p-2 m-4 h-12'>
                                 Your Orders
                             </h1>
                             <main className='p-6 m-4 h-max grid grid-rows-2  border-2 '>
-                               {basket}
+                               
+                                {basket.map(i=>(<div className='border-2'>{i._id}</div>))}
+
                      
                          
                                
@@ -101,20 +114,12 @@ export async function getStaticProps(){
     props:{
         fallback:{
             [API]:info
-        }
+        },
         },
         revalidate:3
 
        
    }
 }
-const SideProjects = ({fallback}) => {
-   
 
-    return (
-        <SWRConfig value={{fallback}}>
-           <Pizzas/>
-        </SWRConfig>
-    )
-}
 export default SideProjects

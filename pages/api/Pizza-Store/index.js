@@ -1,19 +1,29 @@
-import Pizzas from "../../../models/Pizzas";
+import Piz from "../../../models/Pizzas";
 import dbConnect from "../../../utilis/dbConnection";
 import nc from 'next-connect';
 
 dbConnect()
 
-const handler = nc();
+const pizzahandler = nc();
 
 
-handler.get(async(req,res)=>{
+pizzahandler.get(async(req,res)=>{
     try {
-        const PizzaList = await Pizzas.find({})
+        const PizzaList = await Piz.find({})
         res.status(200).json({success:true,data:PizzaList})
     } catch (error) {
-        throw new Error('NOT       ALLOWED')
+        console.log(error)
+    }
+}).post(async(req,res)=>{
+    try {
+        const  finder = await  Piz.create({quantity:req.body.quantity})
+       if(!finder){
+           res.status(200).json({message:finder})
+       }
+    } catch (error) {
+        
     }
 })
 
-export default handler
+
+export default pizzahandler

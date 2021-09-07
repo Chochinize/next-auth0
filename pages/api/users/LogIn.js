@@ -1,30 +1,22 @@
 import dbConnect from "../../../utilis/dbConnection";
 import Users from "../../../models/Users";
+import nc from 'next-connect'
+import Email from "../../../utilis/email";
+import BE from '../../../Components/backend'
+import path from 'path'
 dbConnect();
-
-console.log(123);
-
-
-const LogAuth  = async(req,res)=>{
-    // const {method} = req;
-
-    const {
-        query:{id},
-        method
-    } = req;
-    if(req.method === "GET"){
-        try {
-            const user = await Users.findById(id)
-            res.status(201).json({success:true,data:user})
-            console.log(user)
-        } catch (error) {
-            res.status(400).json({success:false})
-        }
-    }
+const logHanndler = nc()
+ logHanndler.post(async(req,res)=>{
     
+    
+
+    try {
+
+    } catch (error) {
         
-    
-    
+    }
+ }).get(async(req,res)=>{
+    res.sendFile(path.join(__dirname, '/pages/backend'));
+ })
 
-}
-export default LogAuth
+ export default logHanndler;
