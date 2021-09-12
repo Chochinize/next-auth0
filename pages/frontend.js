@@ -1,17 +1,77 @@
-const Frontend = () => {
+import {useEffect} from 'react'
+import {useState} from 'react'
+import { useRouter } from 'next/router'
+import Basket from '../models/basket'
+import axios  from  'axios'
+import dbConnect from '../utilis/dbConnection'
+
+const Frontend = ({resources}) => {
+  
+    console.log(resources)
+    const [state,setState]  = useState('')
+    const [falsy,setFalsy]  = useState(false)
+    const [count,setCount] =  useState(1)
+    const  add = ()=>{
+       setFalsy(true)
+       console.log(state)
+    }
+
+    useEffect(()=>{
+        if(falsy){
+          One()
+        }
+    },[])
+
+    const One = async()=>{
+        const router = useRouter()
+            const API = 'http://localhost:3000/api/Cart'
+        
+            try {
+                const res = await fetch(API,{
+                    method:'POST',
+                    headers:{
+                        'Accept' : 'application/json',
+                        'Content-type' : 'application/json'
+                    },
+                    body: JSON.stringify(count)
+                })
+              
+            } catch (error) {
+                console.log('Some error')
+            }
+    }
 
     return ( 
-        <div className='min-h-screen bg-indigo-400 bg-gradient-to-tl from-transparent to to-black  m-6'>
-            <div className='max-w-4xl p-24'> 
-                <p className='text-[3vw] font-anton lg:text-[2vw]   text-white leading- leading-relaxed   bg-gradient-to-r from-blue-400 to-transparent inline px-10 decoration-clone '>
-A documentary is a film or video examining an event or person based on facts. The word can also refer to anything involving documents. The idea of documentary as meaning "pertaining to documents" came about at the beginning of the 19th century. Later, it came to mean a factual record of something.
-                </p>
+        <div className='min-h-screen bg-indigo-400 bg-gradient-to-br from-transparent to to-white  m-6'>
+        
+           <button className='border-2 p-4 bg-blue-400' onClick={add}>add 1</button>
+           {resources}
+      
             </div>
-        </div>
+        
      );
 }
- 
 
+export  async function getServerSideProps(ctx){
+
+    
+
+    dbConnect()
+    
+  
+    // const res = await fetch('http://localhost:3000/api/Pizza-Store')
+    // const data = await res.json()
+   
+
+    const bas = await Basket.find({})
+    const st = JSON.stringify(bas)
+    console.log(bas)
+    return{
+        props:{
+            resources:st
+        }
+    }
+}
 
 
 export default Frontend;

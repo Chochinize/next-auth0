@@ -15,6 +15,7 @@ function MyApp({ Component, pageProps }) {
 
         return (
         <Provider session={pageProps}>
+                
         <Layout>
         <AppContextProvider>
         <Component {...pageProps} />

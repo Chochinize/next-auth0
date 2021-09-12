@@ -1,7 +1,7 @@
 import dbConnect from "../../../utilis/dbConnection";
 import Users from "../../../models/Users";
 import nc from 'next-connect'
-import Email from '../../../utilis/email'
+
 
 
 dbConnect();
@@ -10,7 +10,7 @@ const Page = async(req,res)=>{
     const {method} = req;
 
 
- console.log(Email)
+console.log(Users)
 
 
     switch(method){

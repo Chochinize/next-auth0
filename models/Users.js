@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-
+import Cart from './basket'
 
 const UserSchema= new mongoose.Schema({
     name:{
@@ -34,5 +34,5 @@ const UserSchema= new mongoose.Schema({
     date: { type: Date, default: Date.now }
 
 },{collection:'users'})
-export default mongoose.models.Note || mongoose.model('Note',UserSchema);
+export default mongoose.models.User || mongoose.model('User',UserSchema);
 

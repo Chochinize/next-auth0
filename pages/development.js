@@ -1,34 +1,74 @@
+import useSWR, { SWRConfig } from 'swr'
 import Head  from 'next/head'
 import React from 'react'
 import Link from  'next/link'
-import {signIn,signOut,useSession} from 'next-auth/client'
-const Development = () => {
+import  axios from 'axios'
+import dbConnect from '../utilis/dbConnection';
+import Basket from '../models/basket';
+import {useEffect}  from 'react'
 
-    const [session,loading] = useSession();
-  
-    return (
-        <div className='bg-blue-200'>{!session && (
-            <>
-                Not  signed in 
-                {loading}
-                <button onClick={signIn}>Sign im</button>
-            </>
-        )}
-        {session &&  (
-            <>
-            Signed in as {session?.user?.name}
-            <div>You  can acces now  this  cdsadasdsadontent</div>
-            <button onClick={signOut}>sign out</button>
-            </>
-        )}
-        </div>
-    ) 
 
-  
+const fetcher = (url) => fetch(url).then((res) => res.json());
+const API = "http://localhost:3000/api/handler";
+
+const Development = ({resources}) => {
+    const parsed = JSON.parse(resources)
+    
+    
+
+    const sendDataToBackEnd  = async ()=>{ 
+        await axios.post(API, {count:'11',price:'1',item:'s1'})
      
     }
- 
+   
+   
+
+    return (
+        <SWRConfig value={resources}>
+
+        <div className='bg-blue-200  w-max'>
+            <Articles/>
+          
+            <button onClick={sendDataToBackEnd}>Send Dataaa</button> 
+            
+        </div>
+                </SWRConfig>
+    ) 
+}
+    
+const  Articles= ()=>{
+
+    const {data} = useSWR(API,fetcher)
+   console.log('DIS IS DATA',data)
+        
+            return  <div className='min-h-screen bg-indigo-500  text-white bg-gradient-to-tl from-transparent to to-black  m-6 tranpa'>
+             <h1>
+                 HELLO{data && data.data.map(oo=>{
+                     return(
+                         <div>
+                             {oo.count}
+                         </div>
+                     )
+                 })}
+             </h1>
+         </div>
+
+}
 
 
+    export async function getServerSideProps() {
+      
 
-export default Development;
+            dbConnect()
+            const bas = await Basket.find({})
+            const  data=  JSON.stringify(bas)
+
+        return {
+          props: {
+            resources:data
+          }
+        };
+      }
+    export default Development;
+
+

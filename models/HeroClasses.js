@@ -1,8 +1,8 @@
 import mongoose from 'mongoose'
 
 const HeroStatsSchema = new mongoose.Schema({
-            level:{},
-            expirience:{},
+            level:[{base:Number}],
+            expirience:[Number],
             health:{
                 vitality:{type:Number}
             },
@@ -31,5 +31,6 @@ const ShamanSchema = new mongoose.Schema({
         water:[String]
     },
 })
-export const Sorceres = mongoose.model('Sorcersess',SorceresSchema)
-export const Shaman = mongoose.model('Shaman',ShamanSchema)
+export const SorsModel  =    mongoose.models.Sorceres ||mongoose.model('Sorceres',SorceresSchema) 
+export const  ShamanModel  =  mongoose.models.Shaman  || mongoose.model('Shaman',ShamanSchema) 
+

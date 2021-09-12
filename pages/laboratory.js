@@ -4,18 +4,18 @@ import {useState,useEffect} from 'react'
 
 
 const fetcher = (url)=> fetch(url).then((res)=> res.json())
-const API = 'http://localhost:3000/api/users'
+const API = 'http://localhost:3000/api/people'
 
 
 const Laboratory = ({fallback}) => {
-
+console.log(fallback);
 return (
     <SWRConfig value={{fallback}}>
             <Article />
         </SWRConfig>
       );
     }
-  
+    export default Laboratory;
     
     
     const  Article = ()=>{
@@ -30,7 +30,6 @@ return (
       
 
         const {data} = useSWR(API,fetcher)
-
         const pp = data.data.map(i=>(<div className='trn '>{i.name}</div>))   
         return  <div className='min-h-screen bg-indigo-500   bg-gradient-to-tl from-transparent to to-black  m-6 tranpa'>
          <h1>
@@ -46,7 +45,7 @@ return (
 
     
 
-
+    // const ax = await axios(API)
      const info = await fetcher(API)
     
      
@@ -61,4 +60,3 @@ return (
         
     }
 }
-export default Laboratory;

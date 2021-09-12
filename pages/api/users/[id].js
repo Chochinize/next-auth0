@@ -1,9 +1,10 @@
 import dbConnect from "../../../utilis/dbConnection";
-import Users from "../../../models/Users";
+import {User} from '../../../models/';
 
 dbConnect();
 
 const handler =  async  (req,res)=>{
+    
     const {
         query:{id},
         method
@@ -13,7 +14,7 @@ const handler =  async  (req,res)=>{
 
         case 'GET':
             try{
-                const note = await Users.findById(id)
+                const note = await User.findById({})
                 if(!note){
                     return res.status(400).json({success:false});
                 }
@@ -24,7 +25,7 @@ const handler =  async  (req,res)=>{
             break;
         case 'PUT':
             try{
-                const note = await Users.findByIdAndUpdate(id, req.body, {
+                const note = await User.findByIdAndUpdate(id, req.body, {
                     new:true,
                     runValidators: true
                 });
@@ -38,7 +39,7 @@ const handler =  async  (req,res)=>{
             break;
             case 'DELETE':
                 try{
-                    const deletedNote = await Users.deleteOne({_id:id})
+                    const deletedNote = await User.deleteOne({_id:id})
                     if(!deletedNote){
                         return res.status(400).json({success:false})
                     } 

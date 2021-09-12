@@ -18,9 +18,6 @@ price:{
 },
 image:{
     type:String
-},
-quntity:{
-    type:[Number]
 }
   })
 

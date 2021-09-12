@@ -8,7 +8,7 @@ const Header = () => {
             <div className='p-2 text-center m-6 fancy-link w-max tracking-widest ' ><Link href='/frontend'><a> FRONTEND</a></Link></div>
             <div className='p-2 text-center m-6 fancy-link w-max tracking-widest' ><Link href='/backend'><a>  BACKEND</a></Link></div>
             <div className='p-2 text-center m-6 fancy-link w-max tracking-widest'><Link href='/laboratory'><a> LABORATORY</a></Link> </div>
-            <div className='p-2 text-center m-6 fancy-link w-max tracking-widest'><Link href='/SideProjects'><a> SIDE PROJECTS</a></Link> </div>
+            <div className='p-2 text-center m-6 fancy-link w-max tracking-widest'><Link href='/SideProjects/'><a> SIDE PROJECTS</a></Link> </div>
         
         </header>
       );
