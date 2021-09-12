@@ -17,6 +17,8 @@ console.log(SorsModel)
         }
     }).get(async(req,res)=>{
      console.log(23)
+     console.log(23)
+     console.log(23)
         try {
             const finde  =  await  StoryModel.
             findOne({ title: 'Casino Royale' })
