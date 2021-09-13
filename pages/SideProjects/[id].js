@@ -1,6 +1,9 @@
 import {useState} from 'react'
 import axios from 'axios'
 import {getCsrfToken} from 'next-auth/client'
+import  Loader from '../../Components/Loader'
+
+
 const API = 'http://localhost:3000/api/Pizza-Store/'
 
 
@@ -26,6 +29,8 @@ const API = 'http://localhost:3000/api/Pizza-Store/'
 export const  getStaticProps = async(context)=>{
  
   
+
+
     // async function myFunction() {
     //     const csrfToken = await getCsrfToken()
     //     console.log(csrfToken)
@@ -37,7 +42,7 @@ export const  getStaticProps = async(context)=>{
     try {
         const  res =   await fetch('http://localhost:3000/api/Pizza-Store/'+context.params.id);
        const  data = await res.json()
-        console.log('this is the fiormmnen',data)
+        
        return {
         props:{
         fallback:data
@@ -61,7 +66,7 @@ export const  getStaticProps = async(context)=>{
 
 const Pages = ({fallback}) => {
 
-
+        
     // async function myFunction() {
     //     const csrfToken = await getCsrfToken()
     //     console.log('Tova e token',csrfToken)
@@ -75,25 +80,30 @@ console.log(fallback.data._id)
 const [add,setAdd] = useState({})
 const [number,setNumber] = useState(0)
 const [price,setPrice] =useState(null)
+const [spinner,setStpinner] =useState(false)
 
 
 const  addToBasket= (data,price)=>{
-    setNumber(prev=>prev+1)
+    setStpinner(true)
+    setTimeout(() => {
+        sendDataToBackEnd(number,price,fallback.data._id)
+        
+        setStpinner(false)
+        setNumber(prev=>prev+1)
         setAdd({...add,data})
-    
-    setPrice(pre=>price)
-    sendDataToBackEnd(number,price,fallback.data._id)
+        setPrice(pre=>price)
+    }, 300);
    
 }
 
 const sendDataToBackEnd  = async (num,pr,id)=>{ 
     
-    await axios.post(API, {count:num,price:pr,item:id})
+    await axios.post(`${API}${id}`, {count:num,price:pr,item:id})
     
  
 }
 const deleteDataFromBackend = async(id,numb)=>{
-    await axios.patch('http://localhost:3000/api/Pizza-Store/'+id,{count:numb,item:id})
+    await axios.patch(`${API}${id}`,{count:numb,id:id})
 }
 
 const deleteItem=(ids)=>{
@@ -118,6 +128,7 @@ const deleteItem=(ids)=>{
       <b>{fallback.data.name}</b>
       <p className='border-t-2 m-6 pt-10'>{fallback.data.description}</p>
       <p className='border-t-2 m-6 pt-10'> costs:{fallback.data.price}</p>
+       
       <button onClick={()=>addToBasket(fallback.data.name,fallback.data.price)}>Add to Basket</button>
   </div>
       </div>
@@ -126,6 +137,9 @@ const deleteItem=(ids)=>{
             <div className='flex justify-between'>
                 <h5>{add.data}</h5>
                 <b>quatity: {number} <span onClick={()=>deleteItem(fallback.data._id)}>-</span> </b>
+                <div>
+                    {spinner ? <Loader/>: ''}
+                </div>
                 <b> price:{price}$</b>
                 
             </div>

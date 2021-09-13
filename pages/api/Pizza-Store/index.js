@@ -17,35 +17,6 @@ pizzahandler.get(async(req,res)=>{
     } catch (error) {
         console.log(error)
     }
-}).post(async(req,res)=>{
-
-
-console.log(jwt.getToken)
-  console.log(req.cookies)
-    const {
-        query:{id},
-        method  
-    } = req;
-    try {
-       
-        
-       
-        const  finder = await  Cart.findByIdAndUpdate(id,req.body,{
-            new: true,
-            upsert: true,
-            runValidators:true
-            
-        })
-        
-        
-       
-
-
-           res.status(200).json({success:'Successfully Updated',message:finder})
-       
-    } catch (error) {
-        
-    }
 })
 
 

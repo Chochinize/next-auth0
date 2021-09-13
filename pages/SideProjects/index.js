@@ -102,7 +102,7 @@ const Pizzas  = ({call,dii})=>{
 console.log(session)
     return  <div> 
      {session &&(
-         <div>dsadasds
+         <div>
              <h1 className='relative'>
                 {pizza}
                 {/* <div className='absolute top-0   h-1/2 right-6 w-1/4'>
@@ -126,7 +126,7 @@ console.log(session)
                             // <div  className='border-2 p-6  m-6 text-center hover:bg-red-100' onClick={sendData}>  Proceed to payment </div>
                     </aside>
                 </div> */}
-                dsads
+                
          </h1>
          </div>
      )}
@@ -135,7 +135,7 @@ console.log(session)
 
 
 export async function getStaticProps(){
-    console.log()
+    
     
     // if(!pass){
     //     return {

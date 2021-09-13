@@ -15,9 +15,23 @@ var storySchema = Schema({
   fans: [{ type: Schema.Types.ObjectId, ref: 'Person' }]
 });
 
+
 export const StoryModel  =    mongoose.models.Story ||mongoose.model('Story',storySchema) 
 export const PersonModel  =    mongoose.models.Person ||mongoose.model('Person',personSchema) 
 
+
+const ss = new StoryModel({
+  author:'',
+  title:"cc",
+  fanst:[1]
+})
+
+ss.save((err)=>{
+  const story2 = new  StoryModel({
+    title: 'Casino Royale',
+    author: author._id 
+});
+})
 
 const author =   new PersonModel({
     _id:  new  mongoose.Types.ObjectId(),
@@ -31,13 +45,16 @@ author.save(function(err){
         title: 'Casino Royale',
         author: author._id 
     });
+
+    
     story1.save(function (err) {
         if (err) return 'Not GOOD';
         // thats it!
       });
+      
     })
 
-    console.log(author)
+    
     
 
   

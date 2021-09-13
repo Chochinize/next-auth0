@@ -16,12 +16,11 @@ console.log(SorsModel)
             res.status(400).json({message:"not  created"})
         }
     }).get(async(req,res)=>{
-     console.log(23)
-     console.log(23)
-     console.log(23)
+     
         try {
             const finde  =  await  StoryModel.
-            findOne({ title: 'Casino Royale' })
+            findOne({ title: 'Casino Royale' }).
+            populate('author')
             res.status(200).json({message:finde})
         } catch (error) {
             
