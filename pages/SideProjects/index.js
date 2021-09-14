@@ -14,7 +14,7 @@ import dbConnect from '../../utilis/dbConnection'
 
 
 const fetcher = (url)=> fetch(url).then((res)=>  res.json())
-const API = 'http://localhost:3000/api/Pizza-Store/'
+const API = 'http://https://next-auth0-livid.vercel.app/api/Pizza-Store/'
 
 
 
@@ -127,10 +127,10 @@ console.log(session)
 }
 
 
-export async function getServerSideProps(){
+export async function getStaticProps(){
     
     
-    console.log('GHOOODOASOD')
+
     // const LoadCart = axios.get(API);
     // console.log(LoadCart)
     // if(!pass){
