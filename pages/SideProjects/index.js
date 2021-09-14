@@ -14,7 +14,7 @@ import dbConnect from '../../utilis/dbConnection'
 
 
 const fetcher = (url)=> fetch(url).then((res)=>  res.json())
-const API = 'http://https://next-auth0-livid.vercel.app/api/Pizza-Store/'
+const API = 'http://https://next-auth0-livid.vercel.app/api/Pizza-Store'
 
 
 
