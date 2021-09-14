@@ -14,7 +14,7 @@ const HeroStatsSchema = new mongoose.Schema({
                 hand:{type:Number}
             }
 })
-
+    
 const SorceresSchema = new mongoose.Schema({
     Stats:HeroStatsSchema,
     skills:{
