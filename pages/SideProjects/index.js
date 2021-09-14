@@ -37,7 +37,7 @@ const SideProjects = ({fallback}) => {
 const Pizzas  = ({call,dii})=>{
     
    
-    const {data}=useSWR('https://next-auth0-5zzvm2d9z-chochinize.vercel.app/api/Pizza-Store/',fetcher)
+    const {data}=useSWR(API,fetcher)
 
     
     
@@ -127,10 +127,10 @@ console.log(session)
 }
 
 
-export async function getStaticProps(){
+export async function getServerSideProps(){
     
     
-
+    console.log('GHOOODOASOD')
     // const LoadCart = axios.get(API);
     // console.log(LoadCart)
     // if(!pass){
@@ -144,15 +144,14 @@ export async function getStaticProps(){
 // dbConnect()
     
   
-    const res = await fetch('https://next-auth0-5zzvm2d9z-chochinize.vercel.app/api/Pizza-Store/')
-    const info = await res.json()
+    // const res = await fetch('http://localhost:3000/api/Pizza-Store')
+    // const data = await res.json()
    
 
     // const bas = await Basket.find({})
     // const st = JSON.stringify(bas)
     
-    // const info = await fetcher(API)
-    
+    const info = await fetcher(API)
     
    
     
