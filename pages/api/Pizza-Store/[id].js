@@ -9,7 +9,7 @@ const handler =  nc();
 handler.get(async(req,res)=>{
     const {
         query:{id},
-        method
+        
     } = req;
        
     

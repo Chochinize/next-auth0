@@ -1,49 +1,47 @@
-import dbConnect from '../../../utilis/dbConnection'
-import Pizz from '../../../models/Pizzas'
-import faker from 'faker'
-import mongoose from 'mongoose'
+// import dbConnect from '../../../utilis/dbConnection'
+// import Pizz from '../../../models/Pizzas'
+// import faker from 'faker'
+// import mongoose from 'mongoose'
 
 
-dbConnect()
+// dbConnect()
 
-const handler = async (req,res)=>{
+// const handler = async (req,res)=>{
 
-    try {
-        await Pizz.deleteMany({})
-        console.log('All pizzas have been deleted')
-      } catch (err) {
-        console.log(err)
-      }
+//     try {
+//         await Pizz.deleteMany({})
+//         console.log('All pizzas have been deleted')
+//       } catch (err) {
+//         console.log(err)
+//       }
     
-    const pizzaPromises = Array(15)
-    .fill(null)
-    .map(() => {
-      const pizzaData = {
-        name: faker.address.cityName(),
-        description: faker.commerce.productDescription(),
-        price: faker.commerce.price(7.99, 13.80),
-        image: faker.image.food()
-      }
-      console.log(`Pizza ${pizzaData.name} has been created`)
-      return Pizz.create(pizzaData)
-      res.status(200).json({message:'CREATED'})
-    })
+//     const pizzaPromises = Array(15)
+//     .fill(null)
+//     .map(() => {
+//       const pizzaData = {
+//         name: faker.address.cityName(),
+//         description: faker.commerce.productDescription(),
+//         price: faker.commerce.price(7.99, 13.80),
+//         image: faker.image.food()
+//       }
+//       console.log(`Pizza ${pizzaData.name} has been created`)
+//       return Pizz.create(pizzaData)
+//       res.status(200).json({message:'CREATED'})
+//     })
 
-    try {
-        await Promise.all(pizzaPromises)
-        console.log('==================================')
-        console.log('All 15 pizzas have been stored into the DB')
-        console.log('==================================')
-        res.status(200).json({message:'CREATED'})
-      } catch (err) {
-        console.log(err)
-      }
+//     try {
+//         await Promise.all(pizzaPromises)
+//         console.log('==================================')
+//         console.log('All 15 pizzas have been stored into the DB')
+//         console.log('==================================')
+//         res.status(200).json({message:'CREATED'})
+//       } catch (err) {
+//         console.log(err)
+//       }
       
-      mongoose.connection.close()
+//       mongoose.connection.close()
 
-}
-
-
+// }
 
 
 
@@ -56,7 +54,9 @@ const handler = async (req,res)=>{
 
 
 
-export default handler
+
+
+// export default handler
 
 
 
