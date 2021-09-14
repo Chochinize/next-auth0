@@ -11,7 +11,7 @@ handler.get(async(req,res)=>{
         query:{id},
         method
     } = req;
-
+       
     
             try{
                 const note = await Piz.findById(id)
@@ -25,11 +25,13 @@ handler.get(async(req,res)=>{
             }
            
 
-        }).patch(async(req,res)=>{
-
-            const {id} = req.body;
-            console.log('dat',req.body)
-            console.log(id)
+        }).put(async(req,res)=>{
+            console.log(req.body)
+            const {
+                query:{id},
+                method
+            } = req;
+            console.log("both works",id)
             const deletItem = await Cart.findByIdAndUpdate(id,req.body,{
                 new: true,
                 upsert: true,
@@ -45,27 +47,33 @@ handler.get(async(req,res)=>{
         }).post(async(req,res)=>{
 
 
-            const {id} = req.body;
-                // const {
-                //     query:{id},
-                //     method  
-                // } = req;
+            // const {id} = req.body;
+                const {
+                    query:{id},
+                    method  
+                } = req;
+                console.log(id)
                 try {
                    
                     
-                   
-                    const  finder = await  Cart.findByIdAndUpdate(id,req.body,{
-                        new: true,
-                        upsert: true,
-                        runValidators:true
+                    const creater  =  await Cart.exists({_id:id})
+                
                         
+                        
+                        
+                        const  finder = await  Cart.findByIdAndUpdate(id,req.body,{
+                            new: true,
+                            upsert: true,
+                            runValidators:true
+                            
                     })
                     
                     
-                   
-            
-            
-                       res.status(200).json({success:'Successfully Updated',message:finder})
+                    
+                    
+                    
+                    res.status(200).json({success:'Successfully Updated',message:finder})
+                
                    
                 } catch (error) {
                     

@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
 import axios from 'axios'
 import {getCsrfToken} from 'next-auth/client'
 import  Loader from '../../Components/Loader'
@@ -6,66 +6,52 @@ import  Loader from '../../Components/Loader'
 
 const API = 'http://localhost:3000/api/Pizza-Store/'
 
-
+//  1.Get  static paths declare all  possible  routing  pages
+//  2.It's neccessery to be done before rendering
+//  3.Needet to be Stringify => .map(i=>Stringify(i))
     export async function getStaticPaths() {
-
-
    const props = {};
-
-          
-
         const res = await fetch(API)
         const posts = await res.json()
-     
-      
         const paths = posts.data.map((i) => ({
           params: { id: i._id.toString() },
         }))
- 
- 
         return { paths, fallback: false }
       }
-
-export const  getStaticProps = async(context)=>{
- 
-  
-
-
+//  1.Static generated props for each single page
+//  2.Fetch for Cart product and add it after thet to the component
+export  const  getStaticProps = async(context)=>{
     // async function myFunction() {
     //     const csrfToken = await getCsrfToken()
     //     console.log(csrfToken)
     //     /* ... */
     //   }
     //   myFunction();
-
-  
+    const  LoadData =   await fetch('http://localhost:3000/api/Cart/');
+   const loadedData =  await LoadData.json()
     try {
         const  res =   await fetch('http://localhost:3000/api/Pizza-Store/'+context.params.id);
-       const  data = await res.json()
-        
+       const  data = await res.json()  
        return {
         props:{
-        fallback:data
-        
-        },
-        revalidate:3
-
-        
+        fallback:data,
+        skeleton:loadedData
+     }
     }
     } catch (error) {
         return{
             props:{}
         }
     }
+}
 
  
   
   
 
-}
-
-const Pages = ({fallback}) => {
-
+// 1. Main Component with mutated data to the  component 
+const Pages = ({fallback,skeleton}) => {
+    
         
     // async function myFunction() {
     //     const csrfToken = await getCsrfToken()
@@ -75,23 +61,23 @@ const Pages = ({fallback}) => {
     //   myFunction();
 
 
-console.log(fallback.data._id)
 
+
+const [skelet,setSkelet] = useState({})
 const [add,setAdd] = useState({})
 const [number,setNumber] = useState(0)
 const [price,setPrice] =useState(null)
 const [spinner,setStpinner] =useState(false)
-
+console.log(number)
 
 const  addToBasket= (data,price)=>{
     setStpinner(true)
+    setPrice(pre=>price)
+    setNumber(prev=>prev+1)
     setTimeout(() => {
         sendDataToBackEnd(number,price,fallback.data._id)
-        
         setStpinner(false)
-        setNumber(prev=>prev+1)
         setAdd({...add,data})
-        setPrice(pre=>price)
     }, 300);
    
 }
@@ -103,19 +89,26 @@ const sendDataToBackEnd  = async (num,pr,id)=>{
  
 }
 const deleteDataFromBackend = async(id,numb)=>{
-    await axios.patch(`${API}${id}`,{count:numb,id:id})
+    await axios.put(`${API}${id}`,{count:numb,id:id})
 }
 
-const deleteItem=(ids)=>{
+const deleteItem=(ids,n)=>{
     setNumber(pre=>pre-1)
     if(number <= 0){
         setNumber(0)
     }
-    deleteDataFromBackend(ids)
-
-
-
+    deleteDataFromBackend(ids,n)
 }
+useEffect(()=>{
+    console.log(skeleton.message,fallback.data)
+    const   fil  =  skeleton.message.find(i=>i._id ===fallback.data._id)  
+if(!fil)   return   
+    setNumber(fil.count)
+    //  setNumber(...skeleton.message.filter(i=>i._id ===fallback.data._id).map(k=>k.count))
+},[])
+
+
+
     return ( 
         <div className='grid grid-cols-[3fr,1fr] border-2 max-h '>
 
@@ -136,8 +129,9 @@ const deleteItem=(ids)=>{
   <div className="row-span-1 border-2  ">Your Basket</div>
             <div className='flex justify-between'>
                 <h5>{add.data}</h5>
-                <b>quatity: {number} <span onClick={()=>deleteItem(fallback.data._id)}>-</span> </b>
+                <b>quatity: {number} <span onClick={()=>deleteItem(fallback.data._id,number)}>-</span> </b>
                 <div>
+                    
                     {spinner ? <Loader/>: ''}
                 </div>
                 <b> price:{price}$</b>

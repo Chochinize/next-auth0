@@ -1,12 +1,15 @@
 import dbConnect from "../../../utilis/dbConnection";
-import {StoryModel}from '../../../models/population'
+
 import nc  from 'next-connect'
+import Cart from '../../../models/basket'
 dbConnect()
 
 const  handler =  nc()
 
-handler.post(async(req,res)=>{
-    console.log(StoryModel)
+handler.get(async(req,res)=>{
+    
+
+    console.log(12355)
     try {
       
        
@@ -14,7 +17,7 @@ handler.post(async(req,res)=>{
         
         
         
-        const  finder = await  StoryModel.find({}).populate('title')
+        const  finder = await  Cart.find({})
 
            res.status(200).json({success:'Successfully Updated',message:finder})
     } catch (error) {

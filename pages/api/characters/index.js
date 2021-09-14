@@ -20,7 +20,7 @@ console.log(SorsModel)
         try {
             const finde  =  await  StoryModel.
             findOne({ title: 'Casino Royale' }).
-            populate('author')
+            populate('')
             res.status(200).json({message:finde})
         } catch (error) {
             

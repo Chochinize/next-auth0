@@ -28,7 +28,7 @@ const Frontend = ({resources}) => {
         
             try {
                 const res = await fetch(API,{
-                    method:'POST',
+                    method:'GET',
                     headers:{
                         'Accept' : 'application/json',
                         'Content-type' : 'application/json'

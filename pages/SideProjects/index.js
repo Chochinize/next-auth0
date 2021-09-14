@@ -6,7 +6,7 @@ import Image from 'next/image'
 import {useRouter} from 'next/router'
 import { session } from 'next-auth/client'
 import { signIn,signOut,useSession,getCsrfToken,getSession } from 'next-auth/client'
-
+import axios from 'axios'
 
 
 import dbConnect from '../../utilis/dbConnection'
@@ -92,13 +92,6 @@ const Pizzas  = ({call,dii})=>{
     
  
 
-    
-    async function myFunction() {
-        const csrfToken = await getCsrfToken()
-        console.log("Another token",csrfToken)
-        /* ... */
-      }
-      myFunction();
 console.log(session)
     return  <div> 
      {session &&(
@@ -137,6 +130,9 @@ console.log(session)
 export async function getStaticProps(){
     
     
+
+    // const LoadCart = axios.get(API);
+    // console.log(LoadCart)
     // if(!pass){
     //     return {
     //         redirect:{
