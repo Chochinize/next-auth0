@@ -1,8 +1,8 @@
 import Piz from "../../../models/Pizzas";
-import Cart from  '../../../models/basket'
+
 import dbConnect from "../../../utilis/dbConnection";
 import nc from 'next-connect';
-import  jwt  from "next-auth/jwt"
+
 dbConnect()
 
 const pizzahandler = nc();

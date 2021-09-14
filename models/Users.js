@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import Cart from './basket'
+
 
 const UserSchema= new mongoose.Schema({
     name:{

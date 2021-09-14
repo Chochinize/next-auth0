@@ -1,5 +1,5 @@
 import dbConnect from "../../../utilis/dbConnection";
-import {User} from '../../../models/';
+import User from '../../../models/Users';
 
 dbConnect();
 

@@ -1,6 +1,6 @@
-import useUser from  '../lib/hooks'
+
 import useSWR, { SWRConfig } from 'swr'
-import {useState,useEffect} from 'react'
+import {useState} from 'react'
 
 
 const fetcher = (url)=> fetch(url).then((res)=> res.json())
