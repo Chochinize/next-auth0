@@ -14,7 +14,7 @@ import dbConnect from '../../utilis/dbConnection'
 
 
 const fetcher = (url)=> fetch(url).then((res)=>  res.json())
-const API = 'http://localhost:3000/api/Pizza-Store/'
+const API = process.env.PIZZA_ADDRESS1
 
 
 
