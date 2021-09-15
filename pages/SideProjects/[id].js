@@ -5,7 +5,7 @@ import  Loader from '../../Components/Loader'
 
 
 const API = process.env.PIZZA_ADDRESS1
-
+const CART = process.env.USER_CART 
 //  1.Get  static paths declare all  possible  routing  pages
 //  2.It's neccessery to be done before rendering
 //  3.Needet to be Stringify => .map(i=>Stringify(i))
@@ -27,7 +27,7 @@ export  const  getStaticProps = async(context)=>{
     //     /* ... */
     //   }
     //   myFunction();
-    const  LoadData =   await fetch('http://localhost:3000/api/Cart/');
+    const  LoadData =   await fetch(CART);
    const loadedData =  await LoadData.json()
     try {
         const  res =   await fetch(API+context.params.id);
