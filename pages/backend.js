@@ -1,6 +1,8 @@
 import {useEffect,useState} from 'react'
 
 import Link from 'next/link'
+
+const USER = process.env.USER_DATABASE 
 const Backend = ({potes}) => {
 
 const [log,setLog] = useState(false)
@@ -82,7 +84,7 @@ const LogOn = ()=>{
     export async function getStaticProps(){
 
         
-        const res = await fetch('http://localhost:3000/api/users');
+        const res = await fetch(USER);
     const data = await res.json();
     
     // if(!data){
