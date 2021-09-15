@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 //CREATE CONNECTION  TO DATABASE
 //FROM NOW ON dBConnect is available everywhere
 const connection = {};
-const conn = process.env.CHARACTERS_PUBLIC_TEST
+const conn = process.env.NEXT_PUBLIC_MONGODB_CONNECTION 
 
 const dbConnect= async()=>{
     if(connection.isConnected){
