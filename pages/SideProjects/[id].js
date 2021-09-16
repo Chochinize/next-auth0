@@ -1,6 +1,6 @@
 import {useState,useEffect} from 'react'
 import axios from 'axios'
-import {getCsrfToken} from 'next-auth/client'
+
 import  Loader from '../../Components/Loader'
 
 
@@ -64,7 +64,7 @@ const Pages = ({fallback,skeleton}) => {
 
 
 
-const [skelet,setSkelet] = useState({})
+
 const [add,setAdd] = useState({})
 const [number,setNumber] = useState(0)
 const [price,setPrice] =useState(null)
