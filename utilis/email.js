@@ -1,7 +1,7 @@
 const sgMail = require('@sendgrid/mail');
 
 console.log(sgMail)
-sgMail.setApiKey(process.env.SENDGRID_API_KET)
+sgMail.setApiKey(process.env.EMAIL_SERVER_PASSWORD)
 
 module.exports = class Email{
     constructor(user,url){
@@ -12,17 +12,19 @@ module.exports = class Email{
     }
     async sendMagicLink() {
         const mailOptions = {
-            to:this.to,
+            to:'enty@abv.bg',
             from:{
-                email:this.fromEmail,
-                name:this.fromName
+                email:'chochinize@gmail.com',
+                name:'Cho'
             },
+            subject:'New web Form',
+            text:'Some friendly message',
             templateId:'de3f4e610c064f43803a91f612795a6e ',
             dynamic_template_data:{
                 url:this.url,
             },
         
         }
-        await sgMail.send(mailOptions).then(()=>{},console.error)
+        await sgMail.send(mailOptions).then(res=>console.log(res))
     }
 }

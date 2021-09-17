@@ -4,8 +4,8 @@ import axios from 'axios'
 import  Loader from '../../Components/Loader'
 
 
-const API = process.env.PIZZA_ADDRESS1
-const CART = process.env.USER_CART 
+const API = 'http://localhost:3000/api/Pizza-Store/'
+const CART = 'http://localhost:3000/api/Cart/'
 //  1.Get  static paths declare all  possible  routing  pages
 //  2.It's neccessery to be done before rendering
 //  3.Needet to be Stringify => .map(i=>Stringify(i))
@@ -30,14 +30,14 @@ export  const  getStaticProps = async(context)=>{
     const  LoadData =   await fetch(CART);
    const loadedData =  await LoadData.json()
     try {
-        const  res =   await fetch(API+context.params.id);
+        const  res =   await fetch(`${API}${context.params.id}`);
        const  data = await res.json()  
        return {
         props:{
         fallback:data,
         skeleton:loadedData
      },
-     revalidate: 1,
+     revalidate: 10,
     }
     } catch (error) {
         return{
@@ -74,8 +74,8 @@ console.log(number)
 const  addToBasket= (data,price)=>{
     setStpinner(true)
     setPrice(pre=>price)
-    setNumber(prev=>prev+1)
     setTimeout(() => {
+        setNumber(prev=>prev+1)
         sendDataToBackEnd(number,price,fallback.data._id)
         setStpinner(false)
         setAdd({...add,data})
@@ -129,7 +129,7 @@ if(!fil)   return
         <aside className='m-6 p-4 border-2  absolute right-0 w-1/4  '>
   <div className="row-span-1 border-2  ">Your Basket</div>
             <div className='flex justify-between'>
-                <h5>{add.data}</h5>
+                {/* <h5>{add.data}</h5> */}
                 <b>quatity: {number} <span onClick={()=>deleteItem(fallback.data._id,number)}>-</span> </b>
                 <div>
                     

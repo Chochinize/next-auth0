@@ -14,7 +14,7 @@ import dbConnect from '../../utilis/dbConnection'
 
 
 const fetcher = (url)=> fetch(url).then((res)=>  res.json())
-const API = process.env.PIZZA_ADDRESS1
+const API = 'http://localhost:3000/api/Pizza-Store'
 
 
 
@@ -39,7 +39,7 @@ const Pizzas  = ({call,dii})=>{
    
     const {data}=useSWR(API,fetcher)
 
-    
+    console.log(data)
     
    
 

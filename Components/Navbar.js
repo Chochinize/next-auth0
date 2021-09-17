@@ -6,8 +6,10 @@ const Navbar = () => {
 
     const[session,loading]=useSession()
     
+    
+    console.log('SESS',session?.user?.image)
     return (
-        <nav className='flex justify-end  gap-6 m-8 p-10 bg-gradient-to-r from-purple-300 via-pink-500 to-red-500  bg-yellow-300 shadow-xl'>
+        <nav className='flex justify-end  gap-6 m-8 p-10 bg-gradient-to-r from-purple-300 via-pink-500 to-blue-500  bg-yellow-300 shadow-xl'>
  {!session && (
         <>
         Not  signed in 
@@ -17,9 +19,11 @@ const Navbar = () => {
      )}
       {session && (
         <>
-        
         <div className='text-[16px]'>
             You are signed in  as <pre>{session?.user?.name}</pre>
+            <img src={session?.user?.image} className='w-8 h-8 rounded-full'/>
+
+            
             </div>
         <button onClick={signOut}>Sign Out</button>
     </>
