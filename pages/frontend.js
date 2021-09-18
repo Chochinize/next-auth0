@@ -52,7 +52,7 @@ const Frontend = ({resources}) => {
      );
 }
 
-export  async function getServerSideProps(ctx){
+export  async function getStaticProps               (ctx){
 
     
 
