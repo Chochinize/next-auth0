@@ -1,24 +1,18 @@
 import Piz from "../../../models/Pizzas";
-
 import dbConnect from "../../../utilis/dbConnection";
-import nc from 'next-connect';
+import nc from "next-connect";
 
-dbConnect()
+dbConnect();
 
 const pizzahandler = nc();
 
-pizzahandler.get(async(req,res)=>{
-   
+pizzahandler.get(async (req, res) => {
+  try {
+    const PizzaList = await Piz.find({});
+    res.status(200).json({ success: true, data: PizzaList });
+  } catch (error) {
+    console.log(error);
+  }
+});
 
-    try {
-        
-
-        const PizzaList = await Piz.find({})
-        res.status(200).json({success:true,data:PizzaList})
-    } catch (error) {
-        console.log(error)
-    }
-})
-
-
-export default pizzahandler
+export default pizzahandler;

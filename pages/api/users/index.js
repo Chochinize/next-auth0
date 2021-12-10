@@ -1,11 +1,6 @@
 import dbConnect from "../../../utilis/dbConnection";
 import Users from "../../../models/Users";
-
-
-
-
 dbConnect();
-
 const Page = async(req,res)=>{
     const {method} = req;
     switch(method){

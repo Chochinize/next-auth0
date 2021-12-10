@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Link from "next/link";
 
-const API = "https://next-auth0-livid.vercel.app";
 const Backend = ({ potes }) => {
+  const API = "https://next-auth0-livid.vercel.app";
   const [log, setLog] = useState(false);
 
   const LogOn = () => {
@@ -41,7 +41,7 @@ console.log(potes)
 };
 
 export async function getStaticProps() {
-  const res = await fetch("https://next-auth0-livid.vercel.app/api/users");
+  const res = await fetch(process.env.USERS_API);
   const data = await res.json();
 
   if (!data) {

@@ -1,7 +1,7 @@
-import {ShamanModel,SorsModel}  from '../../../models/HeroClasses'
+import {SorsModel}  from '../../../models/HeroClasses'
 import dbConnect from '../../../utilis/dbConnection';
 import  nc  from  'next-connect'
-import  {StoryModel,PersonModel} from '../../../models/population'
+import  {StoryModel} from '../../../models/population'
 dbConnect();
 
 

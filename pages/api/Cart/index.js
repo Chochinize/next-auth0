@@ -1,6 +1,6 @@
 import dbConnect from "../../../utilis/dbConnection";
-import  handler  from '../handler'
-import nc from "next-connect";
+import handler from "../handler";
+
 import Cart from "../../../models/basket";
 dbConnect();
 
