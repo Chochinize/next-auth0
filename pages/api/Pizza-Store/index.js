@@ -11,7 +11,7 @@ pizzahandler.get(async(req,res)=>{
    
 
     try {
-        console.log('COOl')
+        
 
         const PizzaList = await Piz.find({})
         res.status(200).json({success:true,data:PizzaList})

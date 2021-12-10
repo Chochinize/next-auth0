@@ -1,10 +1,9 @@
 import React from 'react'
-import useUser from  '../lib/hooks'
+
 import useSWR, { SWRConfig } from 'swr'
-import {useState,useEffect} from 'react'
-import Image from 'next/image'
+
 const fetcher = (url)=> fetch(url).then((res)=>  res.json())
-const API = 'http://localhost:3000/api/Pizza-Store'
+const API = 'https://next-auth0-livid.vercel.app/api/Pizza-Store'
 
 
 const SideProjects = ({fallback}) => {
