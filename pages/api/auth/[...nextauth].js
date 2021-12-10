@@ -19,24 +19,24 @@ const  options = {
         //     clientId:process.env.TWITTER_InnnnnnnnnD,
         //     clientSecret:process.env.TWITTER_SECRET
         // }),
-        Providers.Auth0({
-            clientId: process.env.AUTH0_CLIENT_ID,
-            clientSecret: process.env.AUTH0_CLIENT_SECRET,
-            clientDomain: process.env.AUTH0_DOMAINnnnnn
-        }),
-        Providers.Email({
-            server:{
-                host:process.env.EMAIL_SERVER_HOST,
-                port:process.env.EMAIL_SERVER_PORT,
-                auth:{
-                    user:process.env.EMAIL_SERVER_USER,
-                    password:process.env.EMAIL_SERVER_PASSWORD
-                }
-            },
-            from: process.env.EMAIL_SERVER_FROM,
+        // Providers.Auth0({
+        //     clientId: process.env.AUTH0_CLIENT_ID,
+        //     clientSecret: process.env.AUTH0_CLIENT_SECRET,
+        //     clientDomain: process.env.AUTH0_DOMAINnnnnn
+        // }),
+        // Providers.Email({
+        //     server:{
+        //         host:process.env.EMAIL_SERVER_HOST,
+        //         port:process.env.EMAIL_SERVER_PORT,
+        //         auth:{
+        //             user:process.env.EMAIL_SERVER_USER,
+        //             password:process.env.EMAIL_SERVER_PASSWORD
+        //         }
+        //     },
+        //     from: process.env.EMAIL_SERVER_FROM,
                       
             
-        }),
+        // }),
 
     ],
     

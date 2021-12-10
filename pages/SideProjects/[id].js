@@ -21,6 +21,7 @@ export const getStaticProps = async (context) => {
   try {
     const res = await fetch(`${API}${context.params.id}`);
     const data = await res.json();
+    console.log('this  is  data  from api',data)
     return {
       props: {
         fallback: data,
@@ -37,10 +38,19 @@ export const getStaticProps = async (context) => {
 
 const Pages = ({ fallback, skeleton }) => {
   const [add, setAdd] = useState({});
-  const [number, setNumber] = useState(0);
+  const [number, setNumber] = useState(null);
   const [price, setPrice] = useState(null);
   const [spinner, setStpinner] = useState(false);
   
+  useEffect(() => {
+    console.log(skeleton.message, fallback.data);
+    const fil = skeleton.message.find((i) => i._id === fallback.data._id);
+    if (!fil) return;
+    setNumber(fil.count);
+  }, []);
+
+
+
 
   const addToBasket = (data, price) => {
     setStpinner(true);
@@ -67,12 +77,7 @@ const Pages = ({ fallback, skeleton }) => {
     }
     deleteDataFromBackend(ids, n);
   };
-  useEffect(() => {
-    console.log(skeleton.message, fallback.data);
-    const fil = skeleton.message.find((i) => i._id === fallback.data._id);
-    if (!fil) return;
-    setNumber(fil.count);
-  }, []);
+
 
   return (
     <div className="grid grid-cols-[3fr,1fr] border-2 max-h ">

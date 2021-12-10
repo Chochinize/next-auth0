@@ -14,9 +14,9 @@ handler
 
     try {
       const note = await Piz.findById(id);
-      // if(!note){
-      //     return res.status(400).json({success:false});
-      // }
+      if(!note){
+          return res.status(400).json({success:false});
+      }
 
       res.status(200).json({ success: true, data: note });
     } catch (error) {

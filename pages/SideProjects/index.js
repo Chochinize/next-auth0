@@ -1,10 +1,8 @@
-import React, { Children } from "react";
+import React from "react";
 import Link from "next/link";
 import useSWR, { SWRConfig } from "swr";
-import { useState, useEffect } from "react";
-import Image from "next/image";
+import { useState } from "react";
 import { useRouter } from "next/router";
-import { session } from "next-auth/client";
 import {useSession} from "next-auth/client";
 
 

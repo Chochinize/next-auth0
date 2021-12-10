@@ -1,34 +1,29 @@
-import Cart from  './../../models/basket'
-import dbConnect from './../../utilis/dbConnection'
-import  nc from 'next-connect'
-dbConnect();
+import Cors from 'cors'
 
 
-const  handler =  nc()
-
-handler.get(async(req,res)=>{
-   
-    try {
-        const PizzaList = await Cart.find({})
-        res.status(200).json({success:true,data:PizzaList})
-    } catch (error) {
-        console.log(error)
-    }
-}).post(async(req,res)=>{
-    try {
-
-        const filter = { _id:'61378a4d6f3267adfb3cc8b3'};
-        const  finder = await  Cart.findByIdAndUpdate(filter,req.body,{
-            new: true,
-            upsert: true,
-            runValidators:true
-            
-        })
-        res.status(200).json({success:"updated item",data:finder})
-    } catch (error) {
-        
-    }
+const cors = Cors({
+  methods: ['GET', 'HEAD'],
 })
 
+
+function runMiddleware(req, res, fn) {
+  return new Promise((resolve, reject) => {
+    fn(req, res, (result) => {
+      if (result instanceof Error) {
+        return reject(result)
+      }
+
+      return resolve(result)
+    })
+  })
+}
+
+async function handler(req, res) {
+  
+  await runMiddleware(req, res, cors)
+
+  // Rest of the API logic
+  res.json({ message: 'Hello Everyone!' })
+}
 
 export default handler

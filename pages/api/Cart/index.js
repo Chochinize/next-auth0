@@ -1,10 +1,10 @@
 import dbConnect from "../../../utilis/dbConnection";
-
+import  handler  from '../handler'
 import nc from "next-connect";
 import Cart from "../../../models/basket";
 dbConnect();
 
-const handler = nc();
+const hand = handler();
 
 handler.get(async (req, res) => {
   console.log(12355);
