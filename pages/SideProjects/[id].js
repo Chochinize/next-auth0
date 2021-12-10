@@ -6,9 +6,6 @@ import  Loader from '../../Components/Loader'
 
 const API = 'http://localhost:3000/api/Pizza-Store/'
 const CART = 'http://localhost:3000/api/Cart/'
-//  1.Get  static paths declare all  possible  routing  pages
-//  2.It's neccessery to be done before rendering
-//  3.Needet to be Stringify => .map(i=>Stringify(i))
     export async function getStaticPaths() {
    const props = {};
         const res = await fetch(API)
@@ -18,15 +15,8 @@ const CART = 'http://localhost:3000/api/Cart/'
         }))
         return { paths, fallback: true }
       }
-//  1.Static generated props for each single page
-//  2.Fetch for Cart product and add it after thet to the component
 export  const  getStaticProps = async(context)=>{
-    // async function myFunction() {
-    //     const csrfToken = await getCsrfToken()
-    //     console.log(csrfToken)
-    //     /* ... */
-    //   }
-    //   myFunction();
+
     const  LoadData =   await fetch(CART);
    const loadedData =  await LoadData.json()
     try {
@@ -46,24 +36,7 @@ export  const  getStaticProps = async(context)=>{
     }
 }
 
- 
-  
-  
-
-// 1. Main Component with mutated data to the  component 
 const Pages = ({fallback,skeleton}) => {
-    
-        
-    // async function myFunction() {
-    //     const csrfToken = await getCsrfToken()
-    //     console.log('Tova e token',csrfToken)
-    //     /* ... */
-    //   }
-    //   myFunction();
-
-
-
-
 
 const [add,setAdd] = useState({})
 const [number,setNumber] = useState(0)
@@ -105,7 +78,7 @@ useEffect(()=>{
     const   fil  =  skeleton.message.find(i=>i._id ===fallback.data._id)  
 if(!fil)   return   
     setNumber(fil.count)
-    //  setNumber(...skeleton.message.filter(i=>i._id ===fallback.data._id).map(k=>k.count))
+    
 },[])
 
 

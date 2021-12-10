@@ -6,7 +6,6 @@ dbConnect();
 
 const  handler =  nc()
 
-
 handler.get(async(req,res)=>{
    
     try {

@@ -23,6 +23,9 @@ export const  AppContextProvider = ({children})=>{
     const Add = ()=>{
         dispatch({type:'ADD'})
     }
+    const Delete = ()=>{
+        dispatch({type:'DEL'})
+    }
 
 
     return (

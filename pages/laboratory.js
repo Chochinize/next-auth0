@@ -1,7 +1,7 @@
 import useUser from  '../lib/hooks'
 import useSWR, { SWRConfig } from 'swr'
 import {useState,useEffect} from 'react'
-
+import dbConnection from ''
 
 const fetcher = (url)=> fetch(url).then((res)=> res.json())
 const API = 'http://localhost:3000/api/people'
@@ -43,7 +43,6 @@ return (
  export async function getStaticProps(){
 
 
-    
 
     // const ax = await axios(API)
      const info = await fetcher(API)

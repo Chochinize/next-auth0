@@ -94,11 +94,11 @@ const Pizzas  = ({call,dii})=>{
 
 console.log(session)
     return  <div> 
-     {session &&(
+     {session &&  (
          <div>
              <h1 className='relative'>
                 {pizza}
-                {/* <div className='absolute top-0   h-1/2 right-6 w-1/4'>
+                <div className='absolute top-0   h-1/2 right-6 w-1/4'>
                     <aside className='w-150   border-2 '>
                         <header className='grid grid-rows-[1fr,1fr,3fr]'>
                             <h1 className='bg-red-200 text-center p-2 m-4 h-12'>
@@ -118,7 +118,7 @@ console.log(session)
                         </header>
                             // <div  className='border-2 p-6  m-6 text-center hover:bg-red-100' onClick={sendData}>  Proceed to payment </div>
                     </aside>
-                </div> */}
+                </div>
                 
          </h1>
          </div>
@@ -131,25 +131,6 @@ export async function getStaticProps(){
     
     
 
-    // const LoadCart = axios.get(API);
-    // console.log(LoadCart)
-    // if(!pass){
-    //     return {
-    //         redirect:{
-    //             destination:'/SignIn',
-    //             permaent:false,
-    //         },
-    //     }
-    // }
-// dbConnect()
-    
-  
-    // const res = await fetch('http://localhost:3000/api/Pizza-Store')
-    // const data = await res.json()
-   
-
-    // const bas = await Basket.find({})
-    // const st = JSON.stringify(bas)
     
     const info = await fetcher(API)
     
@@ -161,8 +142,7 @@ export async function getStaticProps(){
         fallback:{
             [API]:info
         },
-    //     diit:st,
-    //    token:pass
+    
         },
        
    }
