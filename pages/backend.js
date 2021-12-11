@@ -2,7 +2,7 @@ import { useState } from "react";
 import Link from "next/link";
 
 const Backend = ({ potes }) => {
-  const API = "https://next-auth0-j7t6160sd-chochinize.vercel.app/";
+  const API = process.env.API;
   const [log, setLog] = useState(false);
 
   const LogOn = () => {
