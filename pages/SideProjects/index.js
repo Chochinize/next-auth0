@@ -100,7 +100,7 @@ import { useSession } from "next-auth/client";
 import Link from "next/link";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
-const API = "https://next-auth0-o8t4gxuzs-chochinize.vercel.app/api/Pizza-Store";
+const API = "https://next-auth0-livid.vercel.app/api/Pizza-Store";
 
 const SideProjects = ({ fallback }) => {
   console.log("falldata", fallback.data);
