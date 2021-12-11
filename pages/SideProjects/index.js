@@ -5,7 +5,6 @@
 // import { useRouter } from "next/router";
 // import {useSession} from "next-auth/client";
 
-
 // const fetcher = (url) => fetch(url).then((res) => res.json());
 // const API = "https://next-auth0-livid.vercel.app/api/Pizza-Store";
 
@@ -21,7 +20,7 @@
 //   const { data } = useSWR(API, fetcher);
 
 //   console.log('data',data);
-   
+
 //   const router = useRouter();
 //   const [basket, setBasket] = useState([]);
 //   const [add, setAdd] = useState(false);
@@ -50,7 +49,6 @@
 //   ));
 
 //   const [session, loading] = useSession();
-
 
 //   return (
 //     <div>
@@ -98,13 +96,74 @@
 
 // export default SideProjects;
 
+import { useSession } from "next-auth/client";
+import Link from "next/link";
 
-const SideProjects = () => {
-    return (
+const fetcher = (url) => fetch(url).then((res) => res.json());
+const API = "https://next-auth0-livid.vercel.app/api/Pizza-Store";
+
+const SideProjects = ({ fallback }) => {
+  console.log("falldata", fallback.data);
+  const items = fallback.data.map((i, id) => (
+    <div key={id}>
+      <Link href={`/SideProjects/${i._id}`} key={id}>
+        <a className="grid grid-cols-6 rounded-full  gap-7">
+          <img src={i.image} className="border-2 rounded-full" />
+
+          <h1> {i.name}</h1>
+          <h1> {i.description}</h1>
+        </a>
+      </Link>
+    </div>
+  ));
+
+  const [session, loading] = useSession();
+  return (
+  
+     
+     <div>
+      {session && ( 
         <div>
-            TWO GG
+          <h1 className="relative">
+            {items}
+            <div className="absolute top-0   h-1/2 right-6 w-1/4">
+              <aside className="w-150   border-2 ">
+                <header className="grid grid-rows-[1fr,1fr,3fr]">
+                  <h1 className="bg-red-200 text-center p-2 m-4 h-12">
+                    Your Orders
+                  </h1>
+
+                  <main className="p-6 m-4 h-max grid grid-rows-2  border-2 "></main>
+                </header>
+                {" "}
+                <div
+                  className="border-2 p-6  m-6 text-center hover:bg-red-100"
+                 
+                >
+                  {" "}
+                  Proceed to payment{" "}
+                </div>
+              </aside>
+            </div>
+          </h1>
         </div>
-    )
+   )} 
+    </div>
+
+
+  )
+};
+
+
+
+export async function getStaticProps() {
+  const info = await fetcher(API);
+
+  return {
+    props: {
+      fallback: info,
+    },
+  };
 }
 
-export default SideProjects
+export default SideProjects;
