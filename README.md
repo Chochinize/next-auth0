@@ -1,6 +1,7 @@
 # Next.js/Tailwind/GithubProvider 
 
 ### This example show how to fetch data in front end with getServerSideProps/getStaticProps
+### Use  Session  to  protect  routes
 
 
 
